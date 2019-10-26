@@ -43,6 +43,8 @@
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
               </select>
             </div>
           </div>
@@ -80,10 +82,10 @@ export default {
   data() {
     return {
       news: [],
-      url: "http://hn.algolia.com/api/v1/search?",
-      scf_select_value: "",
-      lr_select_value: "",
-      hits_select_value: "",
+      url: "http://hn.algolia.com/api/v1/search?tags=story",
+      scf_select_value: "story",
+      lr_select_value: "revelant",
+      hits_select_value: "50",
       search_term: "",
       data_counter: "",
       pages: 0,
@@ -130,12 +132,11 @@ export default {
     },
     get_next_page(page) {
       this.url += `&page=${page}`;
-      console.log(page);
       this.get_data();
     },
-    get_data: function() {
-      (this.news = []),
+    get_data() {
         axios.get(this.url).then(response => {
+          this.news = []
           response.data.hits.forEach(item => {
             item.created_at = this.get_currect_time(item.created_at_i);
             this.news.push(item);

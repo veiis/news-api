@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #ffc107;
+    background: #009688;
     color: white;
 }
 .container .search-area .search-items {
@@ -60,7 +60,7 @@ body {
 /* News section */
 
 .container .news-area {
-    background: #ffe57f;
+    background: #B2DFDB;
     display: flex;
     flex-direction: column;
 }
@@ -76,12 +76,12 @@ body {
     color: #757575;
 }
 .container .news-area a {
-    color: #e65100;
+    color: #00796B;
     text-decoration: none;
 }
 /* Pagination */
 .container .pagination {
-    background: #ffab00;
+    background: #607D8B;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -89,12 +89,14 @@ body {
 }
 .container .pagination span {
     color: #fff;
-    background: #ff3d00;
+    background: #757575;
     margin: 3px 3px;
     padding: 10px;
     text-align: center;
     cursor: pointer;
     border-radius: 5%;
+    font-size: 15px;
+    font-weight: 100;
 }
 
 .active {
