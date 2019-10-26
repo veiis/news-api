@@ -130,6 +130,7 @@ export default {
     },
     get_next_page(page) {
       this.url += `&page=${page}`;
+      console.log(page);
       this.get_data();
     },
     get_data: function() {
@@ -142,7 +143,8 @@ export default {
           this.data_counter = response.data.nbHits
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          this.pages = response.data.nbPages;
+            
+          this.pages = response.data.nbPages-1;
         });
     }
   },
