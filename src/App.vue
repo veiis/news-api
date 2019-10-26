@@ -43,8 +43,7 @@
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="50">50</option>
+
               </select>
             </div>
           </div>
@@ -85,11 +84,12 @@ export default {
       url: "http://hn.algolia.com/api/v1/search?tags=story",
       scf_select_value: "story",
       lr_select_value: "revelant",
-      hits_select_value: "50",
+      hits_select_value: "20",
       search_term: "",
       data_counter: "",
       pages: 0,
       page: 0,
+      selectedFilter: ''
 
     };
   },
@@ -104,21 +104,24 @@ export default {
     set_url_by_type(type) {
       if (type === "story") {
         this.url = `http://hn.algolia.com/api/v1/search?tags=story`;
+        this.selectedFilter = 'story'
       }
       if (type === "comment") {
         this.url = `http://hn.algolia.com/api/v1/search?tags=comment`;
+        this.selectedFilter = 'comment'
       }
       if (type === "front_page") {
         this.url = `http://hn.algolia.com/api/v1/search?tags=front_page`;
+        this.selectedFilter = 'front_page'
       }
       this.get_data();
     },
     set_url_by_lat(type) {
       if (type === "last") {
-        this.url = this.url.replace("search", "search_by_date") + "tags=story";
+        this.url = 'http://hn.algolia.com/api/v1/search_by_date?tags='+this.selectedFilter;
       }
       if (type === "revelant") {
-        this.url = `http://hn.algolia.com/api/v1/search?`;
+        this.url = `http://hn.algolia.com/api/v1/search?tags=${this.selectedFilter}`;
       }
       this.get_data();
     },
@@ -144,8 +147,7 @@ export default {
           this.data_counter = response.data.nbHits
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            
-          this.pages = response.data.nbPages-1;
+          this.pages = response.data.nbPages;
         });
     }
   },
